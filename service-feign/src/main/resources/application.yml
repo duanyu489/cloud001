@@ -1,0 +1,22 @@
+server:
+  port: 8005
+
+spring:
+  application:
+    name: service-feign
+  cloud:
+    inetutils:
+      default-ip-address: 192.168.0.104
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8001/eureka/
+  instance:
+    preferIpAddress: true
+    instance-id: ${spring.cloud.inetutils.default-ip-address}:${server.port} #配置eureka控制台 status显示问题
+
+#Feign是自带断路器的  默认false
+feign:
+  hystrix:
+    enabled: true

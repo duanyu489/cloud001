@@ -1,0 +1,26 @@
+server:
+  port: 8006
+
+spring:
+  application:
+    name: service-zuul
+  cloud:
+    inetutils:
+      default-ip-address: 192.168.0.104
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8001/eureka/
+  instance:
+    preferIpAddress: true
+    instance-id: ${spring.cloud.inetutils.default-ip-address}:${server.port}
+
+zuul:
+  routes:
+    api-a:
+      path: /api-a/**
+      serviceId: service-ribbon
+    api-b:
+      path: /api-b/**
+      serviceId: service-feign

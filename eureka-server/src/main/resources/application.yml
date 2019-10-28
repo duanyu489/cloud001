@@ -1,0 +1,18 @@
+#端口
+server:
+  port: 8001
+
+spring:
+  application:
+    name: eureka-server
+
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    service-url:
+      defaultZone: http://localhost:8001/eureka/
+    fetch-registry: false  #因为是注册中心，职责就是维护服务实力，并不需要去检索服务。所以也设置为false
+    register-with-eureka: false  #代表不向注册中心注册自己
+  server: #自我保护模式关闭  生产环境，不会频繁重启，一定要把自我保护机制打开，
+    enable-self-preservation: false
